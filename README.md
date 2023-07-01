@@ -72,3 +72,49 @@ hello(39);
 ```
 
 어떤 특정한 변수, 어떤 특정한 객체 등의 어떤 타입이다라고 지정해주는 것을 Type Annotation 이다.
+
+---
+
+# TypeScript Types vs JavaScript Types
+
+TypeScript는 Static Types, JavaScript는 Dynamic Types
+
+Static Type은 개발하는 중간에 타입을 체크한다.
+
+하지만 자바스크립트의 다이나믹 타입은 개발하는 도중에는 알 수가 없고 실제 런타임에 돌입해야만 잘못된 걸 알 수 있다.
+
+```tsx
+// JavaScript
+function add(n1, n2) {
+  if (typeof n1 !== "number" || typeof n2 !== "number") {
+    throw new Error("Incorrect input!");
+  }
+  return n1 + n2;
+}
+const result = add(39, 28);
+
+// TypeScript
+function add(n1: number, n2: number) {
+  return n1 + n2;
+}
+const result = add(39, 28);
+```
+
+- 프로그램이 유용하려면, 가장 간단한 데이터 단위로 작업할 수 있어야 한다.
+  - numbers, strings, structures, boolean 값 등등
+- TypeScript에서, 우리는 JavaScript 에서 기대하는 것과 동일한 타입을 지원하며, 돕기 위해 추가적인 열거 타입이 제공되었다.
+- TypeScript 에서 프로그램 작성을 위해 기본 제공하는 데이터 타입
+- **\*\***사용자가 만든 타입은 결국 이 기본 자료형들로 쪼개진다.**\*\***
+- JavaScript 기본 자료형을 포함 (superset)
+  - \***\*ECMAScript 표준에 따른 기본 자료형은 6가지\*\***
+    - Boolean
+    - Number
+    - String
+    - Null
+    - Undefined
+    - Symbol (ECMAScript 6에 추가)
+    - Array: object 형
+- **********************************************\*\*\*\***********************************************프로그래밍을 도울 몇가지 더 제공된다.**********************************************\*\*\*\***********************************************
+  - Any, Void, Never, Unknown
+  - Enum
+  - Tuple: object 형
