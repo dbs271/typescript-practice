@@ -77,7 +77,9 @@ hello(39);
 
 # TypeScript Types vs JavaScript Types
 
-TypeScript는 Static Types, JavaScript는 Dynamic Types
+TypeScript는 Static Types,
+
+JavaScript는 Dynamic Types
 
 Static Type은 개발하는 중간에 타입을 체크한다.
 
@@ -114,7 +116,59 @@ const result = add(39, 28);
     - Undefined
     - Symbol (ECMAScript 6에 추가)
     - Array: object 형
-- **********************************************\*\*\*\***********************************************프로그래밍을 도울 몇가지 더 제공된다.**********************************************\*\*\*\***********************************************
+- **********************\*\***********************\*\*\*\***********************\*\***********************프로그래밍을 도울 몇가지 더 제공된다.**********************\*\***********************\*\*\*\***********************\*\***********************
   - Any, Void, Never, Unknown
   - Enum
   - Tuple: object 형
+
+---
+
+# Primitive Type
+
+- 오브젝트와 레퍼런스 형태가 아닌 실제 값을 저장하는 자료형
+- 프리미티브 형의 내장 함수를 사용 가능한 것은 자바스크립트 처리 방식 덕분
+- (ES2015 기준) 6가지
+  - boolean
+  - number
+  - string
+  - symbol (ES2015)
+  - null
+  - undefined
+
+```tsx
+let name = "mark";
+name.toString();
+```
+
+************\*\*\*\*************Primitive Type************\*\*\*\*************
+
+- literal (값 그 자체를 문자로 값을 할당하는 방식) 값으로 Primitive 타입의 서브 타입을 나타낼 수 있다.
+
+```tsx
+ture;
+("hello");
+3.14;
+null;
+undefined;
+```
+
+- 또는 래퍼 객체로 만들 수 있다.
+
+```tsx
+new Boolean(false); // typeof new Boolean(false) : 'object'
+new String("world"); // typeof new String('world') : 'object'
+new Number(42); // typeof new Number(42) : 'object'
+```
+
+**********\*\***********Type Casing**********\*\***********
+
+- TypeScript의 핵심 primitive types 은 모두 소문자이다.
+- Number, String, Boolean, Symbol 또는 Object 유형이 위에서 권장한 소문자 버전과 동일하다고 생각하고 싶을 수 있다.
+- 이러한 유형은 언어 primitive 를 나타내지 않으며, 타입으로 사용해서는 안된다.
+  ```tsx
+  function reverse(s: String): String {
+    return s.split("").reverse().join("");
+  }
+  reverse("hello world");
+  ```
+- 대신 number, string, boolean, object, 그리고 symbol 타입을 사용하면 된다.
