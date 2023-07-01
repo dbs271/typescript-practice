@@ -116,7 +116,7 @@ const result = add(39, 28);
     - Undefined
     - Symbol (ECMAScript 6에 추가)
     - Array: object 형
-- **********************\*\***********************\*\*\*\***********************\*\***********************프로그래밍을 도울 몇가지 더 제공된다.**********************\*\***********************\*\*\*\***********************\*\***********************
+- **********\*\***********\*\***********\*\***********\*\*\*\***********\*\***********\*\***********\*\***********프로그래밍을 도울 몇가지 더 제공된다.**********\*\***********\*\***********\*\***********\*\*\*\***********\*\***********\*\***********\*\***********
   - Any, Void, Never, Unknown
   - Enum
   - Tuple: object 형
@@ -140,7 +140,7 @@ let name = "mark";
 name.toString();
 ```
 
-************\*\*\*\*************Primitive Type************\*\*\*\*************
+****\*\*\*\*****\*\*\*\*****\*\*\*\*****Primitive Type****\*\*\*\*****\*\*\*\*****\*\*\*\*****
 
 - literal (값 그 자체를 문자로 값을 할당하는 방식) 값으로 Primitive 타입의 서브 타입을 나타낼 수 있다.
 
@@ -160,7 +160,7 @@ new String("world"); // typeof new String('world') : 'object'
 new Number(42); // typeof new Number(42) : 'object'
 ```
 
-**********\*\***********Type Casing**********\*\***********
+****\*\*****\*\*****\*\*****Type Casing****\*\*****\*\*****\*\*****
 
 - TypeScript의 핵심 primitive types 은 모두 소문자이다.
 - Number, String, Boolean, Symbol 또는 Object 유형이 위에서 권장한 소문자 버전과 동일하다고 생각하고 싶을 수 있다.
@@ -172,3 +172,46 @@ new Number(42); // typeof new Number(42) : 'object'
   reverse("hello world");
   ```
 - 대신 number, string, boolean, object, 그리고 symbol 타입을 사용하면 된다.
+
+---
+
+# Types
+
+## boolean
+
+```ts
+let isDone: boolean = false;
+
+isDone = true;
+
+console.log(typeof isDone); // 'boolean'
+
+let isOk: Boolean = true;
+
+let isNotOk: boolean = new Boolean(true);
+```
+
+<img src='./img/img.png' />
+
+## number
+
+```tsx
+let decimal: number = 6; // 10진수
+
+let hex: number = 0xf00d; // 16진수
+
+let binary: number = 0b1010; // 2진수
+
+let octal: number = 0o744; // 8진수
+
+let notANumber: number = NaN; // Not A Number
+
+let underscoreNum: number = 1_000_000;
+```
+
+### Number / number
+
+- JavaScript 와 같이, TypeScript 의 모든 숫자는 부동 소수점 값이다.
+- TypeScript 는 16진수 및 10진수 리터럴 외에도 ECMAScript 2015에 도입된 2진수 및 8진수를 지원한다.
+- NaN
+- 1_000_000 과 같은 표기 가능
