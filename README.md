@@ -116,7 +116,7 @@ const result = add(39, 28);
     - Undefined
     - Symbol (ECMAScript 6에 추가)
     - Array: object 형
-- ****\*\*****\*\*****\*\*****\*\*****\*\*****\*\*****\*\*****\*\*\*\*****\*\*****\*\*****\*\*****\*\*****\*\*****\*\*****\*\*****프로그래밍을 도울 몇가지 더 제공된다.****\*\*****\*\*****\*\*****\*\*****\*\*****\*\*****\*\*****\*\*\*\*****\*\*****\*\*****\*\*****\*\*****\*\*****\*\*****\*\*****
+- \***\*\*\*\*\***\*\*\***\*\*\*\*\***\*\*\***\*\*\*\*\***\*\*\***\*\*\*\*\***\*\*\*\*\***\*\*\*\*\***\*\*\***\*\*\*\*\***\*\*\***\*\*\*\*\***\*\*\***\*\*\*\*\***프로그래밍을 도울 몇가지 더 제공된다.\***\*\*\*\*\***\*\*\***\*\*\*\*\***\*\*\***\*\*\*\*\***\*\*\***\*\*\*\*\***\*\*\*\*\***\*\*\*\*\***\*\*\***\*\*\*\*\***\*\*\***\*\*\*\*\***\*\*\***\*\*\*\*\***
   - Any, Void, Never, Unknown
   - Enum
   - Tuple: object 형
@@ -229,7 +229,7 @@ let myName: string = "Mark";
 myName = "Anna";
 ```
 
-**************\*\***************Template String**************\*\***************
+******\*\*******\*\*******\*\*******Template String******\*\*******\*\*******\*\*******
 
 - 행에 걸쳐 있거나, 표현식을 넣을 수 있는 문자열
 - 이 문자열은 backtick(``) 기호에 둘러쌓여 있다.
@@ -273,3 +273,54 @@ obj[sym];
 ```
 
 ---
+
+## Undefined & Null
+
+- TypeScript에서, undefined 와 null 은 실제로 각 undefined 및 null 이라는 타입을 가진다.
+- void와 마찬가지로, 그 자체로는 그다지 유용하지 않는다,
+- 둘 다 소문자만 존재한다.
+
+### undefined & null 은 다른 모든 타입의 서브 타입으로 존재한다.
+
+- number 에 null 또는 undefined 를 할당할 수 있다는 의미
+- 하지만, 컴파일 옵션에서 `--stricNullChecks` 를 사용하면, null과 undefined 는 void나 자기 자신들에게만 할당할 수 있다.
+  - 이 경우, null과 undefined를 할당할 수 있게 하려면, union type을 이용해야 한다.
+  ```
+  // let MyName: string = null;
+
+  // let u: undefined = null;
+
+  let v: void = undefined // null (x)
+
+  let union: string | null = null;
+
+  union = 'Mark';
+  ```
+
+**********************\*\*\*\***********************JavaScript에서의 null**********************\*\*\*\***********************
+
+- null이라는 값으로 할당된 것을 null 이라고 한다.
+- 무건가가 있는데, 사용할 준비가 덜 된 상태
+- null 이라는 타입은 null 이라는 값만 가질 수 있다.
+- 런타임에서 typeof 연산자를 사용해 알아내면 object 타입이다.
+
+```tsx
+let n: null = null;
+
+console.log(n); // null
+console.log(typeof n); // object
+```
+
+JavaScript에서의 undefined
+
+- 값을 할당하지 않은 변수는 undefined 라는 값을 가진다.
+- 무언가가 아예 준비가 안된 상태
+- object의 property가 없을 때도 undefined 이다.
+- 런타임에서 typeof 연산자를 사용해 알아내면 undefined 타입이다.
+
+```tsx
+let u: undefined = undefined;
+
+console.log(n); // undefined
+console.log(typeof n); // undefined
+```
