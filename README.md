@@ -299,7 +299,7 @@ obj[sym];
   union = 'Mark';
   ```
 
-**********\*\***********\*\*\*\***********\*\***********JavaScript에서의 null**********\*\***********\*\*\*\***********\*\***********
+****\*\*****\*\*****\*\*****\*\*\*\*****\*\*****\*\*****\*\*****JavaScript에서의 null****\*\*****\*\*****\*\*****\*\*\*\*****\*\*****\*\*****\*\*****
 
 - null이라는 값으로 할당된 것을 null 이라고 한다.
 - 무건가가 있는데, 사용할 준비가 덜 된 상태
@@ -372,3 +372,100 @@ create(undefined) // Error
 
 Object.create(0) // Error
 ```
+
+---
+
+## Array
+
+- 자바스크립트에서 array 는 객체다.
+- 사용방법
+  - Array<타입>
+  - 타입[]
+
+```tsx
+let list: number[] = [1, 2, 3];
+
+let list: Array<number> = [1, 2, 3];
+
+let list: (number | string)[] = [1, 2, 3, "4"];
+```
+
+---
+
+## Tuple
+
+```tsx
+let x: [string, number];
+
+x = ["hello", 39];
+
+// 항상 순서와 타입, 길이가 맞아야 한다.
+
+// x = [10, 'Mark']; // Error
+
+// x[3] = 'world' Error
+x[0] = "world";
+
+const person: [string, number] = ["Peter", 25];
+
+const [first, second] = person;
+// array였다면 number이거나 string이거나로 나왔을텐데 tuple의 경우 순서를 지키기 때문에 first는 string, second는 number이다.
+```
+
+---
+
+## any
+
+- 어떤 타입이어도 상관없는 타입이다.
+- 최대한 쓰지 않는게 좋다
+- 이유는 컴파일 타임에 타입 체크가 정상적으로 이뤄지지 않기 때문이다.
+- 컴파일 옵션 중에는 any를 써야하는데 쓰지 않으면 오류를 뱉도록 하는 옵션도 있다,
+  - nolmplicitAny
+
+```tsx
+function retrunAny(message: any): any {
+  console.log(message);
+}
+
+const any1 = retrunAny("리턴은 아무거나");
+
+any1.toString();
+```
+
+- any는 계속해서 개체를 통해 전파된다.
+- 결국, 모든 편의는 타입 안전성을 잃는 대가로 온다.
+- 타입 안전성은 TypeScript를 사용하는 주요 동기 중 하나이며 필요하지 않은 경우에는 any를 사용하지 않도록 해야한다.
+
+```tsx
+let looselyTyped: any = {};
+
+const d = looselyTyped.a.b.c.d;
+```
+
+```tsx
+function leakingAny(obj: any) {
+  const a = obj.num;
+  const b = a + 1;
+  return b;
+}
+
+const c = leakingAny({ num: 0 });
+c.indexOf("0");
+```
+
+위 같이 any를 사용하면 타입에 누수가 생긴다.
+
+```tsx
+function leakingAny(obj: any) {
+  const a: number = obj.num;
+  const b = a + 1;
+  return b;
+}
+
+const c = leakingAny({ num: 0 });
+c.indexOf("0"); // 'number' 형식에 'indexOf' 속성이 없습니다.
+```
+
+위 방식으로 a에 number로 규정을 해주면 누수가 막힌다.
+
+any를 어떤 타입으로 지정해 줄 수도 있지만 obj를 사용하기 전에 TypeGuard 같은 형식으로 갈라내서 타입이 지정되도록 하는 unknown 같은 형식을 추천한다.
