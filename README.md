@@ -229,7 +229,7 @@ let myName: string = "Mark";
 myName = "Anna";
 ```
 
-******\*\*******\*\*******\*\*******Template String******\*\*******\*\*******\*\*******
+**\*\***\*\***\*\***\*\***\*\***\*\***\*\***Template String**\*\***\*\***\*\***\*\***\*\***\*\***\*\***
 
 - 행에 걸쳐 있거나, 표현식을 넣을 수 있는 문자열
 - 이 문자열은 backtick(``) 기호에 둘러쌓여 있다.
@@ -284,7 +284,9 @@ obj[sym];
 
 - number 에 null 또는 undefined 를 할당할 수 있다는 의미
 - 하지만, 컴파일 옵션에서 `--stricNullChecks` 를 사용하면, null과 undefined 는 void나 자기 자신들에게만 할당할 수 있다.
+
   - 이 경우, null과 undefined를 할당할 수 있게 하려면, union type을 이용해야 한다.
+
   ```
   // let MyName: string = null;
 
@@ -297,7 +299,7 @@ obj[sym];
   union = 'Mark';
   ```
 
-**********************\*\*\*\***********************JavaScript에서의 null**********************\*\*\*\***********************
+**********\*\***********\*\*\*\***********\*\***********JavaScript에서의 null**********\*\***********\*\*\*\***********\*\***********
 
 - null이라는 값으로 할당된 것을 null 이라고 한다.
 - 무건가가 있는데, 사용할 준비가 덜 된 상태
@@ -323,4 +325,50 @@ let u: undefined = undefined;
 
 console.log(n); // undefined
 console.log(typeof n); // undefined
+```
+
+---
+
+## object
+
+```tsx
+const person1 = { name: "Mark", age: 30 };
+
+// person1은 object 타입이 아니다.
+// person1 은 '{name: string, age: number}' 인 object literal 타입이다.
+
+const person2 = Object.create({ name: "Mark", age: 30 });
+// ObjectConstructor.create(o: object | null): any (+1 overload)
+```
+
+- primitive type이 아닌 것을 나타내고 싶을 때 사용하는 타입
+
+**non-primitive type**
+
+- not number, string, boolean, bigint, symbol, null, or undefiend
+
+```tsx
+let obj: object = {};
+
+obj = {name: 'Mark'}
+obj = [{name: 'Mark'}]'
+obj = 39; // Error
+obj = 'Mark'; // Error
+obj = true; // Error
+obj = 100n; // Error
+obj = Symbol // Error
+obj = null // Error
+obj = undefined // Error
+
+
+declare function create(o: object | null): void
+
+create({prop: 0})
+create(null);
+create(42); // Error
+create('string') // Error
+create(false) // Error
+create(undefined) // Error
+
+Object.create(0) // Error
 ```
